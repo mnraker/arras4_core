@@ -29,8 +29,9 @@ target_link_libraries(${LibName}
 target_include_directories(${LibName}
     PUBLIC
         $<BUILD_INTERFACE:${BuildIncludeDir}>
-        $<INSTALL_INTERFACE:include>)
-
+        $<INSTALL_INTERFACE:include>
+    PRIVATE
+        ${Boost_INCLUDE_DIRS})
 if(IsUnixPlatform)
     target_compile_options(${LibName} PRIVATE -Wno-pessimizing-move)
 endif()
