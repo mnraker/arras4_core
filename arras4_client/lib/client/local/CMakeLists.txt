@@ -24,15 +24,20 @@ set_property(TARGET ${LibName}
         SessionNotification.h
 )
 
+if (IsUnixPlatform)
+    set(PlatformSpecificLibs
+        ${PROJECT_NAME}::execute)
+endif()
+
 target_link_libraries(${LibName}
     PUBLIC
         ${PROJECT_NAME}::arras4_log
         ${PROJECT_NAME}::arras4_athena
         ${PROJECT_NAME}::message_api
-        ${PROJECT_NAME}::execute
         ${PROJECT_NAME}::network
         ${PROJECT_NAME}::http
-        ${PROJECT_NAME}::shared_impl)
+        ${PROJECT_NAME}::shared_impl
+        ${PlatformSpecificLibs})
 
 
 target_include_directories(${LibName}
